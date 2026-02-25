@@ -1,0 +1,23 @@
+"""Programa Preparación dos sensores e actuadores do Proxecto 
+Julio Perez 25/02/26"""
+
+from machine import ADC, Pin
+import neopixel
+import time
+
+# Configuración
+pinChoiva = 32
+
+
+# Sensor
+ldr = ADC(Pin(pinChoiva))
+ldr.atten(ADC.ATTN_11DB)      # Hasta 3.3V
+ldr.width(ADC.WIDTH_12BIT)   # 12 bits (0–4095)
+
+
+
+# bucle infinito
+while True:
+    valorChoiva = ldr.read()
+    print("Nivel de Choiva:", valorChoiva)
+    time.sleep(1)
