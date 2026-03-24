@@ -1,0 +1,30 @@
+#include "ABlocks_DHT.h"
+
+double Temperatura;
+double Humedad;
+DHT dht23(23,DHT11);
+
+void setup()
+{
+  	pinMode(23, INPUT);
+
+	Serial.begin(115200);
+	Serial.flush();
+	while(Serial.available()>0)Serial.read();
+
+	dht23.begin();
+
+}
+
+
+void loop()
+{
+	yield();
+
+  	Serial.println(String("Humedad: ")+String(Humedad));
+  	Humedad = dht23.readHumidity();
+  	delay(3000);
+  	Serial.println(String("Temperatura: ")+String(Temperatura));
+  	Temperatura = dht23.readTemperature();
+
+}
